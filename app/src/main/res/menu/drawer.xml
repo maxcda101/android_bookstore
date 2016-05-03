@@ -5,10 +5,14 @@
             android:id="@+id/navigation_item_1"
             android:checked="true"
             android:icon="@drawable/abc_ic_clear_mtrl_alpha"
-            android:title="Item One" />
+            android:title="Item One-Thông tin cá nhân" />
         <item
             android:id="@+id/navigation_item_2"
             android:icon="@drawable/ic_action_add"
-            android:title="Item Two" />
+            android:title="Item Two-Đơn đặt hàng" />
+        <item
+            android:id="@+id/navigation_item_3"
+            android:icon="@drawable/ic_action_add"
+            android:title="Home" />
     </group>
 </menu>

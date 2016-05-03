@@ -43,6 +43,8 @@ public class ItemOneFragment extends Fragment {
         adapter.addFragment(oneFragment, "ONE");
         adapter.addFragment(twoFragment, "TWO");
         adapter.addFragment(threeFragment, "THREE");
+        adapter.addFragment(new Fragment(), "4");
+        adapter.addFragment(new Fragment(), "5");
         viewPager.setAdapter(adapter);
     }
 }

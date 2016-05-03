@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.example.anhquan.bookstore.fragments.HomeFragment;
 import com.example.anhquan.bookstore.fragments.ItemOneFragment;
 import com.example.anhquan.bookstore.fragments.ItemTwoFragment;
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setUpNavDrawer();
-        startFragment(new ItemOneFragment());
+        startFragment(new HomeFragment());
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mContentFrame = (FrameLayout) findViewById(R.id.nav_contentframe);
@@ -74,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
                         Snackbar.make(mContentFrame, "Item Two", Snackbar.LENGTH_SHORT).show();
                         mCurrentSelectedPosition = 1;
                         startFragment(new ItemTwoFragment());
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.navigation_item_3:
+                        Snackbar.make(mContentFrame, "Home", Snackbar.LENGTH_SHORT).show();
+                        mCurrentSelectedPosition = 1;
+                        startFragment(new HomeFragment());
                         mDrawerLayout.closeDrawers();
                         return true;
                     default:
@@ -149,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction ft = manager.beginTransaction();
             ft.replace(R.id.nav_contentframe, fragment, fragmentTag);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-            //ft.addToBackStack(backStateName);
+            ft.addToBackStack(backStateName);
             ft.commit();
         }
     }
