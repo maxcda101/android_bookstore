@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 
 import com.example.anhquan.bookstore.R;
 
-/**
- * Created by minhpq on 3/29/16.
- */
 public class ItemTwoFragment extends Fragment {
 
     public ItemTwoFragment() {

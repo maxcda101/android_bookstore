@@ -2,17 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navigation_item_1"
+            android:id="@+id/navigation_item_home"
             android:checked="true"
             android:icon="@drawable/abc_ic_clear_mtrl_alpha"
-            android:title="Item One-Thông tin cá nhân" />
+            android:title="Trang chủ" />
         <item
-            android:id="@+id/navigation_item_2"
-            android:icon="@drawable/ic_action_add"
-            android:title="Item Two-Đơn đặt hàng" />
+            android:id="@+id/navigation_item_thongtincanhan"
+            android:checked="true"
+            android:icon="@drawable/abc_ic_clear_mtrl_alpha"
+            android:title="Thông tin cá nhân" />
         <item
-            android:id="@+id/navigation_item_3"
+            android:id="@+id/navigation_item_rohang"
             android:icon="@drawable/ic_action_add"
-            android:title="Home" />
+            android:title="Quản lý rỏ hàng" />
+        <item
+            android:id="@+id/navigation_item_logout"
+            android:icon="@drawable/ic_action_add"
+            android:title="Đăng xuất" />
     </group>
 </menu>

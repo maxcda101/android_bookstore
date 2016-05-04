@@ -1,4 +1,4 @@
-package com.example.anhquan.bookstore.fragments;
+package com.example.anhquan.bookstore.fragments.QuanLyRoHang;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,15 +12,12 @@ import android.view.ViewGroup;
 import com.example.anhquan.bookstore.R;
 import com.example.anhquan.bookstore.ViewPagerAdapter;
 
-/**
- * Created by minhpq on 3/29/16.
- */
-public class ItemOneFragment extends Fragment {
+public class QuanLyRoHangFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    OneFragment oneFragment;
-    TwoFragment twoFragment;
-    ThreeFragment threeFragment;
+    RoHangFragment roHangFragment;
+    RoHangLuuFragment roHangLuuFragment;
+    DonHangFragment donHangFragment;
 
     @Nullable
     @Override
@@ -37,14 +34,12 @@ public class ItemOneFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        oneFragment = new OneFragment();
-        twoFragment = new TwoFragment();
-        threeFragment = new ThreeFragment();
-        adapter.addFragment(oneFragment, "ONE");
-        adapter.addFragment(twoFragment, "TWO");
-        adapter.addFragment(threeFragment, "THREE");
-        adapter.addFragment(new Fragment(), "4");
-        adapter.addFragment(new Fragment(), "5");
+        roHangFragment = new RoHangFragment();
+        roHangLuuFragment = new RoHangLuuFragment();
+        donHangFragment = new DonHangFragment();
+        adapter.addFragment(roHangFragment, "Rỏ hàng");
+        adapter.addFragment(roHangLuuFragment, "Rỏ hàng đã lưu");
+        adapter.addFragment(donHangFragment, "Đơn đặt hàng");
         viewPager.setAdapter(adapter);
     }
 }

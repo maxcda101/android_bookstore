@@ -1,4 +1,4 @@
-package com.example.anhquan.bookstore.fragments;
+package com.example.anhquan.bookstore.fragments.QuanLyRoHang;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.anhquan.bookstore.R;
 
-public class TwoFragment extends Fragment {
+public class RoHangLuuFragment extends Fragment {
 
-    public TwoFragment() {
+    public RoHangLuuFragment() {
         // Required empty public constructor
     }
 

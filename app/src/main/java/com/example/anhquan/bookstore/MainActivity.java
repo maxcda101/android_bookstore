@@ -1,9 +1,9 @@
 package com.example.anhquan.bookstore;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,10 +18,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.anhquan.bookstore.fragments.HomeFragment;
-import com.example.anhquan.bookstore.fragments.ItemOneFragment;
 import com.example.anhquan.bookstore.fragments.ItemTwoFragment;
+import com.example.anhquan.bookstore.fragments.QuanLyRoHang.QuanLyRoHangFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static boolean isLogin = true;
 
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
@@ -38,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (!isLogin) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -62,25 +68,29 @@ public class MainActivity extends AppCompatActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
                 menuItem.setChecked(true);
                 switch (menuItem.getItemId()) {
-                    case R.id.navigation_item_1:
-                        Snackbar.make(mContentFrame, "Item One", Snackbar.LENGTH_SHORT).show();
+                    case R.id.navigation_item_home:
+                        // Snackbar.make(mContentFrame, "Item One", Snackbar.LENGTH_SHORT).show();
                         mCurrentSelectedPosition = 0;
-                        startFragment(new ItemOneFragment());
-                        mDrawerLayout.closeDrawers();
-                        return true;
-                    case R.id.navigation_item_2:
-                        Snackbar.make(mContentFrame, "Item Two", Snackbar.LENGTH_SHORT).show();
-                        mCurrentSelectedPosition = 1;
-                        startFragment(new ItemTwoFragment());
-                        mDrawerLayout.closeDrawers();
-                        return true;
-                    case R.id.navigation_item_3:
-                        Snackbar.make(mContentFrame, "Home", Snackbar.LENGTH_SHORT).show();
-                        mCurrentSelectedPosition = 1;
                         startFragment(new HomeFragment());
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.navigation_item_thongtincanhan:
+                        //  Snackbar.make(mContentFrame, "Item Two", Snackbar.LENGTH_SHORT).show();
+                        mCurrentSelectedPosition = 1;
+                        //   startFragment(new ItemTwoFragment());
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    case R.id.navigation_item_rohang:
+                        mCurrentSelectedPosition = 2;
+                        startFragment(new QuanLyRoHangFragment());
+                        mDrawerLayout.closeDrawers();
+                        return true;
+
+                    case R.id.navigation_item_logout:
+                        mCurrentSelectedPosition = 3;
+                        //logout
                         mDrawerLayout.closeDrawers();
                         return true;
                     default:
@@ -105,11 +115,11 @@ public class MainActivity extends AppCompatActivity {
         menu.getItem(mCurrentSelectedPosition).setChecked(true);
     }
 
-
     private void setUpToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
+
         }
     }
 

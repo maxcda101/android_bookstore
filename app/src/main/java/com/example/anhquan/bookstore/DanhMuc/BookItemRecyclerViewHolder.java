@@ -10,13 +10,12 @@ import android.widget.TextView;
 
 import com.example.anhquan.bookstore.MainActivity;
 import com.example.anhquan.bookstore.R;
-import com.example.anhquan.bookstore.fragments.TwoFragment;
+import com.example.anhquan.bookstore.fragments.QuanLyRoHang.RoHangLuuFragment;
 
 /**
  * Created by AnhQuan on 02/05/2016.
  */
 public class BookItemRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    public Button btnOrder;
     public TextView tvNameBook;
     public TextView tvPrice;
     public ImageView ivImageBook;
@@ -24,18 +23,19 @@ public class BookItemRecyclerViewHolder extends RecyclerView.ViewHolder implemen
     public BookItemRecyclerViewHolder(final View itemView) {
         super(itemView);
         this.view=itemView;
-        btnOrder=(Button) itemView.findViewById(R.id.btnOrder);
         tvNameBook= (TextView) itemView.findViewById(R.id.tvNameBook);
         tvPrice= (TextView) itemView.findViewById(R.id.tvPrice);
         ivImageBook =(ImageView) itemView.findViewById(R.id.ivImageBook);
 
-        btnOrder.setOnClickListener(this);
+        tvNameBook.setOnClickListener(this);
+        tvPrice.setOnClickListener(this);
+        ivImageBook.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        TwoFragment fragment=new TwoFragment();
+        RoHangLuuFragment fragment=new RoHangLuuFragment();
         String backStateName = fragment.getClass().getName();
         String fragmentTag = backStateName;
 

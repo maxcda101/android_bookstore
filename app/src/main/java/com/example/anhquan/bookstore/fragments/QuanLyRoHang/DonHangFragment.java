@@ -1,4 +1,4 @@
-package com.example.anhquan.bookstore.fragments;
+package com.example.anhquan.bookstore.fragments.QuanLyRoHang;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 import com.example.anhquan.bookstore.R;
 
-public class ThreeFragment extends Fragment {
+public class DonHangFragment extends Fragment {
 
     TextView tv;
-    public ThreeFragment() {
+    public DonHangFragment() {
         // Required empty public constructor
     }
 

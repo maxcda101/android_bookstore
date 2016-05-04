@@ -41,13 +41,14 @@ public class DanhMucCustomRecyclerAdapter extends
 
     @Override
     public void onBindViewHolder(DanhMucItemRecyclerViewHolder holder, int position) {
-        holder.tvDanhMuc.setText(listDanhMuc.get(position)+ position);
+        holder.tvDanhMuc.setText(listDanhMuc.get(position));
 
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(holder.itemView.getContext(),LinearLayoutManager.HORIZONTAL,false);
         holder.recyclerView.setLayoutManager(layoutManager);
         BookCustomRecyclerAdapter adapter=new BookCustomRecyclerAdapter(listSach.get(position));
         holder.recyclerView.setAdapter(adapter);
+        holder.listSach=listSach.get(position);
     }
 
     @Override

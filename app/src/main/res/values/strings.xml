@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bookstore</string>
+    <string name="service">http://192.168.1.6:8080/AndroidServer/</string>
 </resources>

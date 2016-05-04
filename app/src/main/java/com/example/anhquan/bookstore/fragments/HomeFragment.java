@@ -8,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.anhquan.bookstore.DanhMuc.BookCustomRecyclerAdapter;
 import com.example.anhquan.bookstore.DanhMuc.DanhMucCustomRecyclerAdapter;
 import com.example.anhquan.bookstore.Entity.book.Book;
 import com.example.anhquan.bookstore.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by AnhQuan on 02/05/2016.
@@ -35,20 +33,22 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v =inflater.inflate(R.layout.home, container, false);
         RecyclerView recyclerView= (RecyclerView) v.findViewById(R.id.recyclerHome);
-        ArrayList books=new ArrayList<Book>();
-        for (int i=0; i<10;i++){
-            Book book =new Book();
-            book.setImage("http://www.grupodfg.com/dfg/sites/default/files/dfg-catalogo_0.jpeg");
-            book.setSalePrice(100+i+"");
-            book.setTitle("Title: "+i);
-            books.add(book);
+        if(listDanhMuc.size()==0){
+            ArrayList books=new ArrayList<Book>();
+            for (int i=0; i<10;i++){
+                Book book =new Book();
+                book.setImage("http://www.grupodfg.com/dfg/sites/default/files/dfg-catalogo_0.jpeg");
+                book.setSalePrice(100+i+"");
+                book.setTitle("Vì tôi là người giúp");
+                books.add(book);
+            }
+            listDanhMuc.add("Top trong tuan");
+            listDanhMuc.add("Top trong thang");
+            listDanhMuc.add("Top trong nam");
+            listSach.add(books);
+            listSach.add(books);
+            listSach.add(books);
         }
-        listDanhMuc.add("Top trong tuan");
-        listDanhMuc.add("Top trong thang");
-        listDanhMuc.add("Top trong nam");
-        listSach.add(books);
-        listSach.add(books);
-        listSach.add(books);
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,false);
 
