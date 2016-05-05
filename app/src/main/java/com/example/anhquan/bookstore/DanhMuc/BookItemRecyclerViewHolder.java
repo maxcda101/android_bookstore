@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.anhquan.bookstore.Entity.book.Book;
 import com.example.anhquan.bookstore.MainActivity;
 import com.example.anhquan.bookstore.R;
+import com.example.anhquan.bookstore.fragments.BookDetailFragment;
 import com.example.anhquan.bookstore.fragments.QuanLyRoHang.RoHangLuuFragment;
 
 /**
@@ -20,6 +22,7 @@ public class BookItemRecyclerViewHolder extends RecyclerView.ViewHolder implemen
     public TextView tvPrice;
     public ImageView ivImageBook;
     public View view;
+    public Book book=new Book();
     public BookItemRecyclerViewHolder(final View itemView) {
         super(itemView);
         this.view=itemView;
@@ -35,7 +38,8 @@ public class BookItemRecyclerViewHolder extends RecyclerView.ViewHolder implemen
 
     @Override
     public void onClick(View v) {
-        RoHangLuuFragment fragment=new RoHangLuuFragment();
+        BookDetailFragment fragment=new BookDetailFragment();
+        fragment.addElement(book);
         String backStateName = fragment.getClass().getName();
         String fragmentTag = backStateName;
 

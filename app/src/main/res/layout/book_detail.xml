@@ -1,88 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/ivImageBookDetail"
         android:layout_width="150dp"
         android:layout_height="200dp"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="35dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="24dp" />
 
     <TextView
+        android:id="@+id/tvTitleDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Title"
-        android:id="@+id/textView"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView"
+        android:layout_alignTop="@+id/ivImageBookDetail"
         android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp" />
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/ivImageBookDetail"
+        android:layout_toRightOf="@+id/ivImageBookDetail"
+        android:text="Title"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/tvAuthorDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignLeft="@+id/ivImageBookDetail"
+        android:layout_alignStart="@+id/tvTitleDetail"
+        android:layout_below="@+id/tvTitleDetail"
+        android:layout_marginTop="34dp"
         android:text="author"
-        android:id="@+id/author"
-        android:layout_below="@+id/textView"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/tvPublishSherDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvTitleDetail"
+        android:layout_below="@+id/tvAuthorDetail"
+        android:text="publisherD"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/tvPulishYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvTitleDetail"
+        android:layout_below="@+id/tvPublishSherDetail"
+        android:text="publishYear"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/btnAddToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ivImageBookDetail"
+        android:layout_alignStart="@+id/ivImageBookDetail"
+        android:layout_centerVertical="true"
+        android:text="Them vao ro hang" />
+
+    <Button
+        android:id="@+id/btnOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvPulishYear"
+        android:layout_alignStart="@+id/tvPulishYear"
+        android:layout_centerVertical="true"
+        android:text="Dat mua voi 50000" />
+
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btnAddToCart"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/tvDesDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:scrollHorizontally="true"
+            android:scrollbars="vertical"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"></TextView>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivImageBookDetail"
+        android:layout_alignLeft="@+id/btnOrder"
+        android:layout_alignStart="@+id/btnOrder"
+        android:text="Giá bìa"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/tvOriginalPriceDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="34dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="publisher"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/author"
-        android:layout_alignLeft="@+id/textView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="publishYear"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Them vao ro hang"
-        android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dat mua voi 50000"
-        android:id="@+id/button2"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/ivImageBookDetail"
+        android:text="50000"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 </RelativeLayout>

@@ -59,6 +59,7 @@ public class ListBookFragment extends Fragment {
 class ListBookAdapter extends BaseAdapter implements View.OnClickListener{
     private List<Book> listBook=new ArrayList<>();
     private Context context;
+    public Book book=new Book();
 
     public ListBookAdapter(List<Book> listBook, Context context) {
         this.listBook = listBook;
@@ -96,6 +97,7 @@ class ListBookAdapter extends BaseAdapter implements View.OnClickListener{
             title.setText(listBook.get(position).getTitle());
             price.setText(listBook.get(position).getSalePrice());
 
+            book=listBook.get(position);
             Picasso.with(v.getContext()).load(listBook.get(position).getImage())
                     .resize(150,200)
                     .into(image);
@@ -112,7 +114,8 @@ class ListBookAdapter extends BaseAdapter implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        RoHangLuuFragment fragment=new RoHangLuuFragment();
+        BookDetailFragment fragment=new BookDetailFragment();
+        fragment.addElement(book);
         String backStateName = fragment.getClass().getName();
         String fragmentTag = backStateName;
 
