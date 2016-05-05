@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.anhquan.bookstore.Entity.book.Book;
 import com.example.anhquan.bookstore.R;
+import com.example.anhquan.bookstore.Services.StartFragment;
 import com.example.anhquan.bookstore.Services.Store;
 import com.squareup.picasso.Picasso;
 
@@ -73,6 +74,14 @@ public class BookDetailFragment extends Fragment {
             public void onClick(View v) {
                 new Store().addElementToCart(v.getContext(),book);
                 btnaddToCart.setEnabled(false);
+            }
+        });
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OrderFragment fragment=new OrderFragment();
+                fragment.addElement(book);
+                StartFragment.show(fragment,v);
             }
         });
 

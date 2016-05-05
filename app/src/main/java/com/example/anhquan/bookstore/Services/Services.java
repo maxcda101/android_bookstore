@@ -1,11 +1,6 @@
 package com.example.anhquan.bookstore.Services;
 
-import android.util.Log;
-
 import com.loopj.android.http.*;
-import org.json.*;
-
-import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by AnhQuan on 05/05/2016.

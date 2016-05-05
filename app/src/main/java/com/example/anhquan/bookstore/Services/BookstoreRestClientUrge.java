@@ -22,7 +22,7 @@ public class BookstoreRestClientUrge {
     }
 
     public ArrayList<Book> getBookById(String id){
-        final ArrayList<Book> books=new ArrayList<>();
+        ArrayList<Book> books=new ArrayList<>();
 
         RequestParams params = new RequestParams();
         params.put("idBook", id);

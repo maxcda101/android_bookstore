@@ -20,11 +20,12 @@ import android.widget.FrameLayout;
 
 import com.example.anhquan.bookstore.Services.BookstoreRestClientUrge;
 import com.example.anhquan.bookstore.fragments.HomeFragment;
+import com.example.anhquan.bookstore.fragments.InforFragment;
 import com.example.anhquan.bookstore.fragments.QuanLyRoHang.QuanLyRoHangFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static boolean isLogin = true;
+    public static boolean isLogin = false;
 
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
@@ -50,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setUpToolbar();
-
-        Log.v("Respone",new BookstoreRestClientUrge().getBookById("1").size()+"");
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
 
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_item_thongtincanhan:
                         //  Snackbar.make(mContentFrame, "Item Two", Snackbar.LENGTH_SHORT).show();
                         mCurrentSelectedPosition = 1;
-                        //   startFragment(new ItemTwoFragment());
+                           startFragment(new InforFragment());
                         mDrawerLayout.closeDrawers();
                         return true;
                     case R.id.navigation_item_rohang:

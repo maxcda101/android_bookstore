@@ -2,7 +2,7 @@
 <resources>
 
     <!--Indigo 500-->
-    <color name="primary_500">#3F51B5</color>
+    <color name="primary_500">#08b016</color>
     <!--Indigo 700-->
     <color name="primary_700">#303F9F</color>
     <!--Pink 500-->
