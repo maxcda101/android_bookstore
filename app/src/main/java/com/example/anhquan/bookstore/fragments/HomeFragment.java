@@ -37,9 +37,13 @@ public class HomeFragment extends Fragment {
             ArrayList books=new ArrayList<Book>();
             for (int i=0; i<10;i++){
                 Book book =new Book();
-                book.setImage("http://www.grupodfg.com/dfg/sites/default/files/dfg-catalogo_0.jpeg");
-                book.setSalePrice(100+i+"");
-                book.setTitle("Vì tôi là người giúp");
+                book.setImage("http://img.truyentinhyeu.mobi/wp-content/uploads/2014/05/truyen-pippi-tat-dai-tap-pippi-len-tau.jpg");
+                book.setSalePrice("40000");
+                book.setOriginalPrice("50000");
+                book.setAuthor("Anh Quân");
+                book.setDescription(getString(R.string.des));
+                book.setPublisher("NXB Hà Nội");
+                book.setTitle("Xứ Cát - Tiểu Thuyết Khoa Học Giả Tưởng Lớn Nhất Mọi Thời Đại");
                 books.add(book);
             }
             listDanhMuc.add("Top trong tuan");
@@ -48,6 +52,7 @@ public class HomeFragment extends Fragment {
             listSach.add(books);
             listSach.add(books);
             listSach.add(books);
+
         }
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,false);

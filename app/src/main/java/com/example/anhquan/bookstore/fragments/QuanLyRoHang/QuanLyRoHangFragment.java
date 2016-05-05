@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.anhquan.bookstore.R;
+import com.example.anhquan.bookstore.Services.Store;
 import com.example.anhquan.bookstore.ViewPagerAdapter;
+import com.example.anhquan.bookstore.fragments.ListBookFragment;
 
 public class QuanLyRoHangFragment extends Fragment {
     private TabLayout tabLayout;
@@ -35,9 +37,13 @@ public class QuanLyRoHangFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         roHangFragment = new RoHangFragment();
+
+        ListBookFragment listBookFragment=new ListBookFragment();
+        listBookFragment.addElement("List sach da luu",new Store().getCart(viewPager.getContext()));
+
         roHangLuuFragment = new RoHangLuuFragment();
         donHangFragment = new DonHangFragment();
-        adapter.addFragment(roHangFragment, "Rỏ hàng");
+        adapter.addFragment(listBookFragment, "Rỏ hàng");
         adapter.addFragment(roHangLuuFragment, "Rỏ hàng đã lưu");
         adapter.addFragment(donHangFragment, "Đơn đặt hàng");
         viewPager.setAdapter(adapter);

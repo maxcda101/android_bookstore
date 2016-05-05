@@ -42,6 +42,7 @@ public class BookCustomRecyclerAdapter extends
         Picasso.with(holder.view.getContext()).load(listData.get(position).getImage())
                 .resize(150,200)
                 .into(holder.ivImageBook);
+        holder.book=listData.get(position);
     }
 
     @Override
