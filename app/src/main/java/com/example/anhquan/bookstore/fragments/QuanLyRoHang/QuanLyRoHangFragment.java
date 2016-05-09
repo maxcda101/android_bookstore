@@ -39,12 +39,12 @@ public class QuanLyRoHangFragment extends Fragment {
         roHangFragment = new RoHangFragment();
 
         ListBookFragment listBookFragment=new ListBookFragment();
-        listBookFragment.addElement("List sach da luu",new Store().getCart(viewPager.getContext()));
+        listBookFragment.addElement("Sách đã có trong giỏ",new Store().getCart(viewPager.getContext()));
 
         roHangLuuFragment = new RoHangLuuFragment();
         donHangFragment = new DonHangFragment();
-        adapter.addFragment(listBookFragment, "Rỏ hàng");
-        adapter.addFragment(roHangLuuFragment, "Rỏ hàng đã lưu");
+        adapter.addFragment(listBookFragment, "Giỏ hàng");
+        adapter.addFragment(roHangLuuFragment, "Giỏ hàng đã lưu");
         adapter.addFragment(donHangFragment, "Đơn đặt hàng");
         viewPager.setAdapter(adapter);
     }

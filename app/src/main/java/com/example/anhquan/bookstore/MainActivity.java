@@ -1,5 +1,6 @@
 package com.example.anhquan.bookstore;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,15 +19,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.example.anhquan.bookstore.Services.BookstoreRestClientUrge;
+import com.example.anhquan.bookstore.Services.ServiceGenerator;
+import com.example.anhquan.bookstore.Services.Services;
+import com.example.anhquan.bookstore.Services.Store;
 import com.example.anhquan.bookstore.fragments.HomeFragment;
 import com.example.anhquan.bookstore.fragments.InforFragment;
 import com.example.anhquan.bookstore.fragments.QuanLyRoHang.QuanLyRoHangFragment;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
+
+import java.io.IOException;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static boolean isLogin = false;
 
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
@@ -43,17 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (!isLogin) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
         super.onCreate(savedInstanceState);
+        checkLogin();
 
         setContentView(R.layout.activity_main);
 
         setUpToolbar();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
+        //ServiceGenerator.getAllCategory();
+
 
         mUserLearnedDrawer = Boolean.valueOf(readSharedSetting(this, PREF_USER_LEARNED_DRAWER, "false"));
 
@@ -94,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_item_logout:
                         mCurrentSelectedPosition = 3;
                         //logout
+                        logOut();
                         mDrawerLayout.closeDrawers();
+
                         return true;
                     default:
                         return true;
@@ -143,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
             mUserLearnedDrawer = true;
             saveSharedSetting(this, PREF_USER_LEARNED_DRAWER, "true");
         }
-
     }
 
     public static void saveSharedSetting(Context ctx, String settingName, String settingValue) {
@@ -173,5 +183,49 @@ public class MainActivity extends AppCompatActivity {
             ft.commit();
         }
     }
+    public void checkLogin(){
+        String username= Store.getString("username",this.getApplicationContext());
+        String password=Store.getString("password",this.getApplicationContext());
+        final int[] islogin = {0};
+        RequestParams params = new RequestParams();
+        params.put("username", username);
+        params.put("password", password);
 
+        final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        final Context context=this.getApplicationContext();
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Authenticating...");
+        progressDialog.show();
+
+        Services.post("member/login",params, new TextHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                if(responseString.equals("true")){
+                    islogin[0] =1;
+                }else{
+                    Intent intent = new Intent(context, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Log.e("ERROR", throwable.toString());
+            }
+        });
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        progressDialog.dismiss();
+                    }
+                }, 500);
+    }
+    public void logOut(){
+        Store.deleteString("username",this.getApplicationContext());
+        Store.deleteString("password",this.getApplicationContext());
+        new Store().removeAllCart(this.getApplicationContext());
+        finish();
+        System.exit(1);
+    }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.anhquan.bookstore.Entity.book.Book;
 import com.example.anhquan.bookstore.R;
+import com.example.anhquan.bookstore.Services.ServiceGenerator;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -39,8 +40,8 @@ public class BookCustomRecyclerAdapter extends
         holder.tvNameBook.setText(listData.get(position).getTitle());
         holder.tvPrice.setText(listData.get(position).getSalePrice()+"");
 
-        Picasso.with(holder.view.getContext()).load(listData.get(position).getImage())
-                .resize(150,200)
+        Picasso.with(holder.view.getContext()).load(ServiceGenerator.API_BASE_URL+"resources/image/thumb/"+listData.get(position).getImage())
+                .resize(500,651)
                 .into(holder.ivImageBook);
         holder.book=listData.get(position);
     }

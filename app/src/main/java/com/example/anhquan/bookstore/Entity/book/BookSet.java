@@ -5,6 +5,8 @@
  */
 package com.example.anhquan.bookstore.Entity.book;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -12,10 +14,13 @@ import java.io.Serializable;
  * @author txtd1
  */
 public class BookSet implements Serializable {
-
+    @SerializedName(value = "idBookSet")
     private int idBookSet;
+    @SerializedName(value = "name")
     private String name;
+    @SerializedName(value = "description")
     private String description;
+    @SerializedName(value = "sortLink")
     private String sortLink;
 
     public BookSet() {

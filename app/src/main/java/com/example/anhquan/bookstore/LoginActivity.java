@@ -5,6 +5,7 @@ package com.example.anhquan.bookstore;
  */
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,6 +16,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.anhquan.bookstore.Services.Services;
+import com.example.anhquan.bookstore.Services.Store;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
+
+import cz.msebera.android.httpclient.Header;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -52,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void login() {
+    public  void login() {
         Log.d(TAG, "Login");
 
         if (!validate()) {
@@ -68,20 +76,46 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        final String email = _emailText.getText().toString();
+        final String password = _passwordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
+        final int[] islogin = {0};
+        RequestParams params = new RequestParams();
+        params.put("username", email);
+        params.put("password", password);
+        Services.post("member/login",params, new TextHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                if(responseString.equals("true")){
+                    islogin[0] =1;
+                }else{
+                    islogin[0] =2;
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Log.e("ERROR", throwable.toString());
+                Toast.makeText(getBaseContext(), "Error Connection", Toast.LENGTH_LONG).show();
+            }
+        });
+        final Context context=this.getApplicationContext();
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
+                        if(islogin[0]==1){
+                            Store.setString("username",email,context);
+                            Store.setString("password",password,context);
+                            onLoginSuccess();
+                        }else{
+                            onLoginFailed();
+                        }
                         progressDialog.dismiss();
+
                     }
-                }, 3000);
+                }, 1000);
     }
 
 

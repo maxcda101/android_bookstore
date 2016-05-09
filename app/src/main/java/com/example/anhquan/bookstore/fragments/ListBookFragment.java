@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import com.example.anhquan.bookstore.Entity.book.Book;
 import com.example.anhquan.bookstore.MainActivity;
 import com.example.anhquan.bookstore.R;
+import com.example.anhquan.bookstore.Services.ServiceGenerator;
+import com.example.anhquan.bookstore.Services.StartFragment;
 import com.example.anhquan.bookstore.fragments.QuanLyRoHang.RoHangLuuFragment;
 import com.squareup.picasso.Picasso;
 
@@ -53,10 +56,19 @@ public class ListBookFragment extends Fragment {
         ListBookAdapter adapter=new ListBookAdapter(listBook,v.getContext());
         gvBook.setAdapter(adapter);
 
+        gvBook.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BookDetailFragment fragment=new BookDetailFragment();
+                fragment.addElement(listBook.get(position));
+                StartFragment.show(fragment,view);
+            }
+        });
+
         return v;
     }
 }
-class ListBookAdapter extends BaseAdapter implements View.OnClickListener{
+class ListBookAdapter extends BaseAdapter {
     private List<Book> listBook=new ArrayList<>();
     private Context context;
     public Book book=new Book();
@@ -98,37 +110,14 @@ class ListBookAdapter extends BaseAdapter implements View.OnClickListener{
             price.setText(listBook.get(position).getSalePrice());
 
             book=listBook.get(position);
-            Picasso.with(v.getContext()).load(listBook.get(position).getImage())
-                    .resize(150,200)
+            Picasso.with(v.getContext()).load(ServiceGenerator.API_BASE_URL+"resources/image/thumb/"+listBook.get(position).getImage())
+                    .resize(500,651)
                     .into(image);
 
-
-            title.setOnClickListener(this);
-            price.setOnClickListener(this);
-            image.setOnClickListener(this);
         }else{
             v=convertView;
         }
         return v;
     }
 
-    @Override
-    public void onClick(View v) {
-        BookDetailFragment fragment=new BookDetailFragment();
-        fragment.addElement(book);
-        String backStateName = fragment.getClass().getName();
-        String fragmentTag = backStateName;
-
-        MainActivity activity= (MainActivity) v.getContext();
-        FragmentManager manager = activity.getSupportFragmentManager();
-        boolean fragmentPopped = manager.popBackStackImmediate(backStateName, 0);
-
-        if (!fragmentPopped && manager.findFragmentByTag(fragmentTag) == null) { //fragment not in back stack, create it.
-            FragmentTransaction ft = manager.beginTransaction();
-            ft.replace(R.id.nav_contentframe, fragment, fragmentTag);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-            ft.addToBackStack(backStateName);
-            ft.commit();
-        }
-    }
 }

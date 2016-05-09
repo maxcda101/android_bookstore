@@ -5,6 +5,8 @@
  */
 package com.example.anhquan.bookstore.Entity.book;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -13,20 +15,35 @@ import java.io.Serializable;
  */
 public class Book implements Serializable {
 
+    @SerializedName(value = "idBook")
     private int idBook;
+    @SerializedName(value = "image")
     private String image;
+    @SerializedName(value = "title")
     private String title;
+    @SerializedName(value = "author")
     private String author;
+    @SerializedName(value = "publisher")
     private String publisher;
+    @SerializedName(value = "publishYear")
     private String publishYear;
+    @SerializedName(value = "description")
     private String description;
+    @SerializedName(value = "originalPrice")
     private String originalPrice;
+    @SerializedName(value = "salePrice")
     private String salePrice;
+    @SerializedName(value = "quantity")
     private int quantity;
+    @SerializedName(value = "category")
     private Category category;
+    @SerializedName(value = "set")
     private BookSet set;
+    @SerializedName(value = "sortLink")
     private String sortLink;
+    @SerializedName(value = "votes")
     private int votes;
+    @SerializedName(value = "ratePoint")
     private float ratePoint;
 
     public Book() {

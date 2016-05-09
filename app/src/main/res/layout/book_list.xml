@@ -9,7 +9,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/tvTitleListBook" />
+        android:id="@+id/tvTitleListBook"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"/>
     <GridView
         android:id="@+id/gvListBook"
         android:layout_marginTop="20dp"

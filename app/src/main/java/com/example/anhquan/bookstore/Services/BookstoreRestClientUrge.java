@@ -26,7 +26,7 @@ public class BookstoreRestClientUrge {
     }
 
 
-    public boolean login(String username, String password){
+    public static boolean login(String username, String password){
         RequestParams params = new RequestParams();
         params.put("username", username);
         params.put("password", password);

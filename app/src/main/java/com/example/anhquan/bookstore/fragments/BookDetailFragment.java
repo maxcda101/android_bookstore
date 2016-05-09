@@ -1,5 +1,7 @@
 package com.example.anhquan.bookstore.fragments;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.anhquan.bookstore.Entity.book.Book;
 import com.example.anhquan.bookstore.R;
+import com.example.anhquan.bookstore.Services.ServiceGenerator;
 import com.example.anhquan.bookstore.Services.StartFragment;
 import com.example.anhquan.bookstore.Services.Store;
 import com.squareup.picasso.Picasso;
@@ -57,23 +60,30 @@ public class BookDetailFragment extends Fragment {
         des.setText(book.getDescription());
 
         ImageView image=(ImageView) v.findViewById(R.id.ivImageBookDetail);
-        Picasso.with(v.getContext()).load(book.getImage()).resize(150,200).into(image);
+        Picasso.with(v.getContext()).load(ServiceGenerator.API_BASE_URL+"resources/image/thumb/"+book.getImage()).resize(500,651).into(image);
 
         final Button btnaddToCart=(Button)v.findViewById(R.id.btnAddToCart);
         Button btnOrder=(Button)v.findViewById(R.id.btnOrder);
         btnOrder.setText("Mua ngay với "+book.getSalePrice()+" đ");
 
         ArrayList<Book> books=new Store().getCart(v.getContext());
-        if(books.indexOf(book)>=0){
-            btnaddToCart.setEnabled(false);
+        for(int i=0; i<books.size();i++){
+            if(books.get(i).getIdBook()==book.getIdBook()){
+                btnaddToCart.setEnabled(false);
+                btnaddToCart.setText("Đã trong rỏ hàng");
+                btnaddToCart.setBackgroundResource(R.drawable.button_notaddtocart);
+                btnaddToCart.setTextColor(getResources().getColor(R.color.accent_500));
+                break;
+            }
         }
-        Toast.makeText(v.getContext(),new Store().getCart(v.getContext()).size()+"",Toast.LENGTH_SHORT).show();
-
         btnaddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Store().addElementToCart(v.getContext(),book);
                 btnaddToCart.setEnabled(false);
+                btnaddToCart.setText("Đã trong rỏ hàng");
+                btnaddToCart.setBackgroundResource(R.drawable.button_notaddtocart);
+                btnaddToCart.setTextColor(getResources().getColor(R.color.accent_500));
             }
         });
         btnOrder.setOnClickListener(new View.OnClickListener() {
